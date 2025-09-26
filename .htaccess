@@ -1,0 +1,26 @@
+# Technocrats Website Configuration
+RewriteEngine On
+
+# Clean URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([^.]+)$ $1.html [NC,L]
+
+# Redirects
+RewriteRule ^home/?$ technocrats.html [R=301,L]
+RewriteRule ^about/?$ technocrats-about.html [R=301,L]
+RewriteRule ^services/?$ technocrats-services.html [R=301,L]
+RewriteRule ^contact/?$ technocrats-contact.html [R=301,L]
+RewriteRule ^team/?$ technocrats-team-3.html [R=301,L]
+
+# Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 year"
+    ExpiresByType application/javascript "access plus 1 year"
+    ExpiresByType image/* "access plus 1 year"
+</IfModule>
+
+# Security
+Header always set X-Content-Type-Options nosniff
+Header always set X-Frame-Options DENY
